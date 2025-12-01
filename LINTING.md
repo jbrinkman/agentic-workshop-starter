@@ -110,13 +110,6 @@ Both frontend and backend use the same Prettier configuration:
 }
 ```
 
-### Other IDEs
-
-Most modern IDEs support ESLint and Prettier:
-- **WebStorm/IntelliJ**: Built-in support
-- **Sublime Text**: Install ESLint and Prettier packages
-- **Vim/Neovim**: Use ALE or CoC plugins
-
 ## Common Issues & Solutions
 
 ### Issue: ESLint errors not showing in IDE
@@ -233,6 +226,7 @@ const more: any = fetchMore();
    - Show how linting catches bugs early
    - Demonstrate auto-fix capabilities
    - Explain why certain rules exist
+   - Create Windsurf rule to auto-run lint and format before each commit
 
 2. **Common student mistakes:**
    - Unused imports → Show auto-fix

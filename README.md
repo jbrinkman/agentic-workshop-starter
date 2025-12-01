@@ -103,6 +103,73 @@ agentic-labs/
    cp .env.example .env
    ```
 
+4. **Configure GitHub SSE MCP Server** (for AI assistant integration):
+   
+   a. **Create a GitHub Personal Access Token (PAT)**:
+      - Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+      - Click "Generate new token (classic)"
+      - Select the following scopes:
+        - `repo` (Full control of private repositories - includes code, issues, PRs)
+        - `workflow` (Update GitHub Action workflows)
+        - `read:org` (Read org and team membership)
+        - `read:user` (Read user profile data)
+        - `user:email` (Access user email addresses)
+      - Copy the generated token
+   
+   b. **Set the environment variable**:
+      
+      **macOS/Linux:**
+      
+      Add to your shell profile (`~/.zshrc`, `~/.bashrc`, or `~/.bash_profile`):
+      ```bash
+      export GITHUB_PERSONAL_ACCESS_TOKEN="your_pat_here"
+      ```
+      
+      Then reload your shell:
+      ```bash
+      source ~/.zshrc  # or ~/.bashrc, ~/.bash_profile
+      ```
+      
+      **Windows:**
+      
+      Using PowerShell (persistent):
+      ```powershell
+      [System.Environment]::SetEnvironmentVariable('GITHUB_PERSONAL_ACCESS_TOKEN', 'your_pat_here', 'User')
+      ```
+      
+      Or using Command Prompt (current session only):
+      ```cmd
+      set GITHUB_PERSONAL_ACCESS_TOKEN=your_pat_here
+      ```
+      
+      For persistent Windows setup, you can also use System Properties:
+      - Search for "Environment Variables" in Windows
+      - Click "Edit the system environment variables"
+      - Click "Environment Variables" button
+      - Under "User variables", click "New"
+      - Variable name: `GITHUB_PERSONAL_ACCESS_TOKEN`
+      - Variable value: `your_pat_here`
+      - Click OK and restart your terminal/IDE
+   
+   c. **Configure Windsurf MCP** (if using Windsurf IDE):
+      
+      Edit your `~/.codeium/windsurf/mcp_config.json`:
+      ```json
+      {
+        "mcpServers": {
+          "github-sse": {
+            "url": "https://api.githubcopilot.com/mcp/",
+            "headers": {
+              "Authorization": "Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}"
+            },
+            "disabled": false
+          }
+        }
+      }
+      ```
+      
+      Restart Windsurf after making these changes.
+
 ## 🏃 Running the Application
 
 ### Development Mode
@@ -381,23 +448,37 @@ MIT License - feel free to use this project for learning and teaching purposes.
 
 ## 🎓 What You'll Learn
 
-### Key Concepts
-- ✅ Full-stack TypeScript development
-- ✅ RESTful API design and implementation
-- ✅ React component architecture
-- ✅ State management with hooks
-- ✅ Unit testing with Jest
-- ✅ Modern build tools (Vite)
-- ✅ Styling with Tailwind CSS
-- ✅ Working with Agentic AI tools
+This workshop focuses on **Agentic AI development** using **Windsurf** as your AI pair programming assistant. You'll learn how AI agents can transform your entire development workflow.
 
-### Best Practices
-- Type safety throughout the stack
-- Separation of concerns (components, services, routes)
-- Error handling and validation
-- Testing at multiple levels
-- Clean, maintainable code structure
-- Modern ES6+ JavaScript/TypeScript
+### Learning Objectives
+
+1. **🤖 Develop with AI Agents**
+   - Get hands-on experience with Windsurf, an AI-powered IDE
+   - Learn how to effectively collaborate with AI agents during development
+   - Understand when and how to leverage AI assistance for maximum productivity
+
+2. **📋 Requirements to User Stories with AI**
+   - Transform high-level requirements into well-formed user stories
+   - Use AI to break down complex features into actionable tasks
+   - Learn best practices for writing AI-friendly specifications
+
+3. **🔄 AI-Powered Version Control**
+   - Leverage AI for Git operations and branch management
+   - Generate meaningful commit messages automatically
+   - Use AI to resolve merge conflicts and review diffs
+
+4. **✨ Code Review and Improvement with AI**
+   - Perform AI-assisted code reviews for quality and best practices
+   - Identify bugs, security issues, and performance improvements
+   - Refactor code with AI suggestions while maintaining functionality
+   - Learn to critically evaluate and apply AI recommendations
+
+### Technical Stack
+This workshop uses a modern full-stack TypeScript application to demonstrate AI-assisted development:
+- **Frontend**: React + TypeScript + Vite + Tailwind CSS
+- **Backend**: Node.js + Express + TypeScript
+- **Testing**: Jest for unit and integration tests
+- **AI Tools**: Windsurf IDE with GitHub MCP integration
 
 ---
 
