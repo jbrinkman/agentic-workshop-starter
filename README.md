@@ -275,12 +275,97 @@ npm run build
 - Ask Windsurf to refactor code
 
 ### Example Prompts for Windsurf
-- "Create a Task type with id, title, description, and completed fields"
-- "Add a POST endpoint to create new tasks"
-- "Build a TaskList component to display tasks"
-- "Add error handling to the API calls"
-- "Write tests for the new task endpoints"
-- "Add a database connection using Prisma"
+
+These prompts follow the **Role/Task/Constraints/Context/Output** format to help you get the best results from Windsurf.
+
+#### 1. Creating User Stories
+
+```
+Role: You are a product owner creating user stories for a development team.
+
+Task: Create a set of user stories in a markdown document for extending this web application to include simple task management functionality.
+
+Constraints:
+- Each user story must follow the INVEST principles (Independent, Negotiable, Valuable, Estimable, Small, Testable)
+- Include 3-5 acceptance criteria for each story
+- Keep the scope focused on basic CRUD operations for tasks
+- Stories should be implementable in a workshop setting (2-4 hours total)
+
+Context: This is a baseline full-stack application with React frontend and Express backend. The current app has no data management features - just a welcome page and a hello API endpoint.
+
+Output: Create a file called USER_STORIES.md with 4-6 well-formed user stories that would enable users to create, view, update, and delete tasks. Each story should include a title, user story statement, acceptance criteria, and estimated effort.
+```
+
+#### 2. Implementing a User Story
+
+```
+Role: You are a full-stack developer implementing features from a user story.
+
+Task: Implement the user story for creating new tasks, including both frontend and backend components.
+
+Constraints:
+- Follow the existing project structure and coding patterns
+- Use TypeScript with proper type definitions
+- Include error handling for API calls
+- Write unit tests for both frontend and backend
+- Follow the existing ESLint and Prettier configurations
+- Ensure the UI is responsive and follows the existing Tailwind CSS design patterns
+
+Context: The user story is: "As a user, I want to create a new task with a title and description so that I can track things I need to do." The application currently has no task management features. The backend uses Express with in-memory storage, and the frontend uses React with hooks.
+
+Output: Implement the complete feature including:
+1. Backend: Task type definition, POST /api/tasks endpoint, validation
+2. Frontend: Task type definition, TaskForm component, API service function
+3. Tests: Unit tests for the endpoint and component
+4. Update App.tsx to include the new TaskForm component
+```
+
+#### 3. Git Workflow - Branch, Commit, and PR
+
+```
+Role: You are a developer following Git best practices for feature development.
+
+Task: Use git to create a feature branch, commit the task creation code, push to remote, and create a pull request.
+
+Constraints:
+- Branch name must follow the convention: feature/task-creation
+- Commit messages must be descriptive and follow conventional commits format
+- The PR description must include: what was changed, why it was changed, and how to test it
+- Do not commit node_modules, build artifacts, or IDE-specific files
+
+Context: I have just finished implementing the task creation feature (backend endpoint, frontend component, and tests). The code is currently uncommitted in my working directory. The remote repository is on GitHub at jbrinkman/agentic-workshop-starter.
+
+Output: Execute the git commands to:
+1. Create and switch to a new feature branch
+2. Stage and commit the changes with a proper commit message
+3. Push the branch to the remote repository
+4. Provide the command or instructions to create a PR on GitHub
+```
+
+#### 4. Code Review from Pull Request
+
+```
+Role: You are a senior developer performing a thorough code review.
+
+Task: Pull the branch associated with PR #[NUMBER] and perform a comprehensive code review of the task creation feature.
+
+Constraints:
+- Check for potential bugs, edge cases, and error handling issues
+- Verify that tests exist and provide adequate coverage
+- Look for code smells, readability issues, and violations of best practices
+- Ensure TypeScript types are properly defined and used
+- Verify that the code follows the project's existing patterns and conventions
+- Check for security issues (input validation, XSS, injection vulnerabilities)
+
+Context: This PR implements a task creation feature for the workshop starter app. It includes backend API endpoints, frontend components, and tests. The team follows TypeScript strict mode, uses ESLint/Prettier, and emphasizes test coverage.
+
+Output: Provide a detailed code review organized into sections:
+1. Critical Issues: Bugs or security problems that must be fixed
+2. Missing Tests: Areas that need test coverage
+3. Code Quality: Readability, maintainability, and best practice suggestions
+4. Positive Observations: What was done well
+5. Summary: Overall assessment and recommendation (approve, request changes, or comment)
+```
 
 ## 🤝 Contributing
 
