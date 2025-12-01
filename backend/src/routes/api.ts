@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import { getItems, getItemById, createItem } from '../controllers/itemController';
 
 const router = Router();
 
-// Item routes
-router.get('/items', getItems);
-router.get('/items/:id', getItemById);
-router.post('/items', createItem);
+// Example API route
+router.get('/hello', (req, res) => {
+  res.json({ message: 'Hello from the API!' });
+});
 
 export default router;
