@@ -1,6 +1,6 @@
-# Windsurf & Agentic AI Workshop - Starter Project
+# Agentic Workshop Starter
 
-Welcome to the workshop! This is a full-stack web application starter built with modern technologies to help you learn how to build applications using Windsurf and Agentic AI.
+A clean, modern full-stack web application template built with React, TypeScript, Express, and Tailwind CSS. This starter provides a solid foundation with all the tooling configured, ready for you to build upon during the workshop.
 
 ## 🚀 Tech Stack
 
@@ -26,35 +26,48 @@ Welcome to the workshop! This is a full-stack web application starter built with
 ## 📁 Project Structure
 
 ```
-workshop-starter/
+agentic-labs/
 ├── frontend/                 # React frontend application
 │   ├── src/
-│   │   ├── components/      # React components
-│   │   │   ├── ItemForm.tsx
-│   │   │   ├── ItemList.tsx
-│   │   │   └── __tests__/   # Component tests
+│   │   ├── __tests__/       # Component tests
+│   │   │   └── App.test.tsx
 │   │   ├── services/        # API service layer
+│   │   │   └── api.ts       # API client functions
 │   │   ├── types/           # TypeScript type definitions
+│   │   │   └── index.ts     # Shared types
 │   │   ├── App.tsx          # Main app component
-│   │   └── main.tsx         # Entry point
+│   │   ├── main.tsx         # Entry point
+│   │   ├── index.css        # Global styles
+│   │   └── setupTests.ts    # Test configuration
 │   ├── index.html
 │   ├── package.json
 │   ├── tsconfig.json
 │   ├── vite.config.ts
-│   └── tailwind.config.js
+│   ├── tailwind.config.js
+│   └── jest.config.js
 │
 ├── backend/                  # Express backend API
 │   ├── src/
-│   │   ├── controllers/     # Request handlers
 │   │   ├── routes/          # API routes
+│   │   │   └── api.ts       # API endpoints
 │   │   ├── types/           # TypeScript type definitions
+│   │   │   └── index.ts     # Shared types
 │   │   ├── __tests__/       # API tests
+│   │   │   └── api.test.ts
 │   │   └── index.ts         # Server entry point
+│   ├── .env.example         # Environment variables template
 │   ├── package.json
 │   ├── tsconfig.json
+│   ├── nodemon.json
 │   └── jest.config.js
 │
-└── package.json              # Root package.json for scripts
+├── package.json              # Root package.json for scripts
+├── agentic-labs.code-workspace  # VS Code workspace settings
+├── LICENSE                   # MIT License
+├── README.md                 # This file
+├── QUICKSTART.md            # Quick start guide
+├── LINTING.md               # Linting and formatting guide
+└── WORKSHOP_GUIDE.md        # Workshop instructions
 ```
 
 ## 🛠️ Setup Instructions
@@ -106,7 +119,7 @@ Or run them separately:
 npm run dev:backend
 ```
 
-**Frontend** (runs on http://localhost:3000):
+**Frontend** (runs on http://localhost:5173):
 ```bash
 npm run dev:frontend
 ```
@@ -177,42 +190,50 @@ npm run format:check      # Check if code is formatted
 
 ## 📚 API Endpoints
 
-### Items API
+### Example Endpoints
 
-- **GET** `/api/items` - Get all items
-- **GET** `/api/items/:id` - Get item by ID
-- **POST** `/api/items` - Create new item
+- **GET** `/api/hello` - Simple hello message from the API
   ```json
   {
-    "name": "Item name",
-    "description": "Item description"
+    "message": "Hello from the API!"
   }
   ```
 
 ### Health Check
 
 - **GET** `/health` - Server health status
+  ```json
+  {
+    "status": "ok",
+    "timestamp": "2025-12-01T13:00:00.000Z"
+  }
+  ```
+
+## 🎯 What's Included
+
+This baseline starter includes:
+
+- ✅ **Clean Welcome Page** - Modern, responsive UI with Tailwind CSS
+- ✅ **API Connectivity** - Frontend connects to backend and displays API status
+- ✅ **Full TypeScript Setup** - Type safety across the entire stack
+- ✅ **Testing Framework** - Jest configured for both frontend and backend
+- ✅ **Code Quality Tools** - ESLint and Prettier pre-configured
+- ✅ **Hot Reload** - Fast development with Vite and Nodemon
+- ✅ **Modern Icons** - Lucide React icon library included
 
 ## 🎯 Workshop Exercises
 
-This starter project is designed for hands-on learning. Here are some suggested exercises:
+This is a clean baseline ready for you to build upon. During the workshop, you'll add features such as:
 
-### Beginner Level
-1. **Add a new field** - Add a "priority" field to items (low, medium, high)
-2. **Implement filtering** - Add ability to filter items by name
-3. **Add sorting** - Sort items by date or name
-
-### Intermediate Level
-4. **Implement DELETE** - Complete the delete functionality (currently a placeholder)
-5. **Add UPDATE** - Implement edit functionality for items
-6. **Add pagination** - Implement pagination for the item list
-7. **Add search** - Implement full-text search across items
-
-### Advanced Level
-8. **Add authentication** - Implement user login/signup
-9. **Add database** - Replace in-memory storage with a real database (MongoDB, PostgreSQL)
-10. **Add real-time updates** - Use WebSockets for live updates
-11. **Add file uploads** - Allow users to attach files to items
+### Example Features to Build
+1. **Task Management** - Create, read, update, and delete tasks
+2. **Data Persistence** - Add a database (MongoDB, PostgreSQL, or SQLite)
+3. **User Authentication** - Implement login and signup
+4. **Real-time Updates** - Use WebSockets for live data
+5. **File Uploads** - Allow users to attach files
+6. **Search & Filter** - Add advanced data filtering
+7. **Pagination** - Handle large datasets efficiently
+8. **API Documentation** - Add Swagger/OpenAPI docs
 
 ## 🎨 Customization
 
@@ -253,12 +274,13 @@ npm run build
 - Let Windsurf help you write tests
 - Ask Windsurf to refactor code
 
-### Example Prompts
-- "Add a priority field to the Item type and update all related code"
-- "Write tests for the ItemForm component"
-- "Implement a DELETE endpoint for items"
+### Example Prompts for Windsurf
+- "Create a Task type with id, title, description, and completed fields"
+- "Add a POST endpoint to create new tasks"
+- "Build a TaskList component to display tasks"
 - "Add error handling to the API calls"
-- "Refactor the item controller to use async/await"
+- "Write tests for the new task endpoints"
+- "Add a database connection using Prisma"
 
 ## 🤝 Contributing
 
@@ -272,24 +294,25 @@ This is a workshop starter project. Feel free to:
 
 MIT License - feel free to use this project for learning and teaching purposes.
 
-## 🎓 Workshop Notes
+## 🎓 What You'll Learn
 
-### Key Concepts Covered
+### Key Concepts
 - ✅ Full-stack TypeScript development
-- ✅ RESTful API design
+- ✅ RESTful API design and implementation
 - ✅ React component architecture
 - ✅ State management with hooks
 - ✅ Unit testing with Jest
 - ✅ Modern build tools (Vite)
-- ✅ CSS with Tailwind
+- ✅ Styling with Tailwind CSS
+- ✅ Working with Agentic AI tools
 
-### Best Practices Demonstrated
+### Best Practices
 - Type safety throughout the stack
-- Separation of concerns (components, services, controllers)
-- Error handling
+- Separation of concerns (components, services, routes)
+- Error handling and validation
 - Testing at multiple levels
-- Clean code structure
-- Modern ES6+ JavaScript
+- Clean, maintainable code structure
+- Modern ES6+ JavaScript/TypeScript
 
 ---
 
