@@ -27,6 +27,18 @@ A clean, modern full-stack web application template built with React, TypeScript
 
 ```
 agentic-labs/
+├── .windsurf/                # Windsurf IDE configuration
+│   └── workflows/           # AI workflow definitions
+│       ├── openspec-proposal.md   # Create new change proposals
+│       ├── openspec-apply.md      # Apply approved changes
+│       └── openspec-archive.md    # Archive deployed changes
+│
+├── openspec/                 # OpenSpec project management
+│   ├── AGENTS.md            # AI agent instructions
+│   ├── project.md           # Project configuration
+│   ├── changes/             # Active change proposals
+│   └── specs/               # Deployed specifications
+│
 ├── frontend/                 # React frontend application
 │   ├── src/
 │   │   ├── __tests__/       # Component tests
@@ -67,6 +79,7 @@ agentic-labs/
 ├── README.md                 # This file
 ├── QUICKSTART.md            # Quick start guide
 ├── LINTING.md               # Linting and formatting guide
+├── OPENSPEC_GUIDE.md        # OpenSpec usage guide
 └── WORKSHOP_GUIDE.md        # Workshop instructions
 ```
 
@@ -75,6 +88,7 @@ agentic-labs/
 ### Prerequisites
 - Node.js (v18 or higher)
 - npm or yarn
+- OpenSpec CLI (`npm install -g openspec`) - For managing user stories and development tasks
 
 ### Installation
 
@@ -345,47 +359,53 @@ npm run build
 
 These prompts follow the **Role/Task/Constraints/Context/Output** format to help you get the best results from Windsurf.
 
-#### 1. Creating User Stories
+#### 1. Creating a Change Proposal with OpenSpec
 
 ```
-Role: You are a product owner creating user stories for a development team.
+Use the /openspec-proposal workflow to create a new change proposal for adding 
+task management functionality to this application.
 
-Task: Create a set of user stories in a markdown document for extending this web application to include simple task management functionality.
+The feature should include:
+- Backend API endpoints for CRUD operations on tasks (create, read, update, delete)
+- Task data model with title, description, status, and timestamps
+- Frontend React components for displaying and managing tasks
+- Form validation and error handling
+- Unit tests for both backend and frontend
+- In-memory storage for the workshop (no database required)
 
-Constraints:
-- Each user story must follow the INVEST principles (Independent, Negotiable, Valuable, Estimable, Small, Testable)
-- Include 3-5 acceptance criteria for each story
-- Keep the scope focused on basic CRUD operations for tasks
-- Stories should be implementable in a workshop setting (2-4 hours total)
-
-Context: This is a baseline full-stack application with React frontend and Express backend. The current app has no data management features - just a welcome page and a hello API endpoint.
-
-Output: Create a file called USER_STORIES.md with 4-6 well-formed user stories that would enable users to create, view, update, and delete tasks. Each story should include a title, user story statement, acceptance criteria, and estimated effort.
+The proposal should break this down into implementable tasks suitable for a 
+workshop setting (2-4 hours total implementation time).
 ```
 
-#### 2. Implementing a User Story
+**What this does:**
+- Creates a structured change proposal in `openspec/changes/`
+- Breaks down the feature into specific, actionable tasks
+- Provides implementation details and acceptance criteria
+- Gives you a clear roadmap before writing any code
+
+#### 2. Implementing an Approved Change
 
 ```
-Role: You are a full-stack developer implementing features from a user story.
-
-Task: Implement the user story for creating new tasks, including both frontend and backend components.
-
-Constraints:
-- Follow the existing project structure and coding patterns
-- Use TypeScript with proper type definitions
-- Include error handling for API calls
-- Write unit tests for both frontend and backend
-- Follow the existing ESLint and Prettier configurations
-- Ensure the UI is responsive and follows the existing Tailwind CSS design patterns
-
-Context: The user story is: "As a user, I want to create a new task with a title and description so that I can track things I need to do." The application currently has no task management features. The backend uses Express with in-memory storage, and the frontend uses React with hooks.
-
-Output: Implement the complete feature including:
-1. Backend: Task type definition, POST /api/tasks endpoint, validation
-2. Frontend: Task type definition, TaskForm component, API service function
-3. Tests: Unit tests for the endpoint and component
-4. Update App.tsx to include the new TaskForm component
+Use the /openspec-apply workflow to implement change 001-task-management
 ```
+
+**What this does:**
+- Reads the approved proposal from `openspec/changes/001-task-management.md`
+- Implements all tasks defined in the proposal systematically
+- Follows the existing project structure and coding patterns
+- Creates TypeScript types, API endpoints, React components, and tests
+- Ensures code follows ESLint and Prettier configurations
+- Updates the proposal to track implementation progress
+
+**Before running this:**
+1. Review the proposal: `cat openspec/changes/001-task-management.md`
+2. Ensure the proposal status is set to "approved"
+3. Make sure you understand the tasks and acceptance criteria
+
+**After implementation:**
+- Run tests: `npm test`
+- Test the feature manually in your browser
+- Review the generated code and make any necessary adjustments
 
 #### 3. Git Workflow - Branch, Commit, and PR
 
